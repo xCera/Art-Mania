@@ -1,0 +1,25 @@
+<%- include("partials/header") %>
+
+    <h1>Share your work with us!</h1>
+
+    <form action="/artworks" method="post">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+
+        <label for="thumbnail">thumbnail</label>
+        <input type="url" name="thumbnail" id="thumbnail">
+        
+        <label for="desc">Description</label>
+        <input type="text" name="desc" id="desc">
+        
+        <label for="name">Your Name</label>
+        <input type="text" name="name" id="name">
+
+        <label for="Image">Your Image</label>
+        <input type="text" name="image" id="image">
+        
+        <button>Submit</button>
+    </form>
+
+<%- include("partials/footer") %>
+

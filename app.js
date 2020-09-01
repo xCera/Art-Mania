@@ -13,7 +13,7 @@ const artworks = [
 			'https://images.unsplash.com/photo-1525838808082-a422ecbce2ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80',
 		desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
 		author: {
-			name: 'Alexandre Trouvé',
+			name: 'Marko Jovanovic',
 			image:
 				'https://images.unsplash.com/photo-1561903912-87c9615f2b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
 		}
@@ -26,6 +26,24 @@ app.get('/', (req, res) => {
 
 app.get('/artworks', (req, res) => {
 	res.render('artworks', { artworks: artworks });
+});
+
+app.post('/artworks', (req, res) => {
+	let newArtwork = {
+		title: req.body.title,
+		thumbnail: req.body.thumbnail,
+		desc: req.body.desc,
+		author: {
+			name: req.body.name,
+			image: req.body.image
+		}
+	};
+	artworks.push(newArtwork);
+	res.redirect('/artworks');
+});
+
+app.get('/artworks/new', (req, res) => {
+	res.render('newArt');
 });
 
 app.listen(port, () => console.log(`listening!`));
