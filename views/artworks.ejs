@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Maniac</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+        <div class="artworks-container">
+            <% artworks.forEach(art => { %>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('<%=art.thumbnail%>');"></div>
+                    <div class="card-author">
+                        <div class="author-img" style="background-image: url('<%=art.author.image%>');"></div>
+                        <h4><%=art.author.name%></h4>
+                    </div>
+                    <div class="card-body">
+                       <h3><%=art.title%></h3>
+                        <p><%=art.desc%></p>
+                        <a href="">View >></a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+</body>
+</html>
+
+
+

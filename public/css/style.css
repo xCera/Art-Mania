@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #ebebeb;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.artworks-container {
+  margin: 100px auto;
+  width: 90%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+.artworks-container .card {
+  font-weight: 300;
+  overflow: hidden;
+  width: 250px;
+  height: 320px;
+  background-color: white;
+  -webkit-box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.artworks-container .card .card-img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40%;
+  width: 100%;
+}
+
+.artworks-container .card .card-author {
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 15px;
+}
+
+.artworks-container .card .card-author .author-img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.artworks-container .card .card-author h4 {
+  font-weight: 400;
+}
+
+.artworks-container .card .card-body {
+  padding: 15px;
+}
+
+.artworks-container .card .card-body p {
+  margin: 10px 0px;
+}
+
+.artworks-container .card .card-body a {
+  text-decoration: none;
+  color: black;
+}
+/*# sourceMappingURL=style.css.map */
