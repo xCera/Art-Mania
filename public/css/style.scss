@@ -70,6 +70,90 @@ body {
 			bottom: 0;
 			right: 0;
 			margin: 10px;
+
+			i {
+				color: rgb(155, 14, 68);
+			}
 		}
+	}
+}
+
+.form-container {
+	margin: 150px auto;
+	width: 40%;
+}
+.form {
+	.slide {
+		margin-top: 20px;
+	}
+	display: flex;
+	justify-content: center;
+}
+form div {
+	margin: 20px 0;
+	width: 90%;
+
+	label {
+		margin-bottom: 10px;
+		font-size: 18px;
+		color: black;
+		display: block;
+	}
+	input {
+		padding: 20px;
+		height: 52px;
+		background: none;
+		color: black;
+		border: none;
+		font-size: 18px;
+		border: 1px solid rgb(182, 182, 182);
+		border-radius: 5px;
+		width: 100%;
+		box-shadow: none;
+	}
+}
+
+.slide {
+	margin-top: 10px;
+	border: 2px solid rgb(155, 14, 68);
+	border-radius: 30px;
+	padding: 5px 15px;
+	background-color: rgba(#000000, $alpha: 0);
+	transition: all .3s;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	&:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -2;
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0%;
+		height: 100%;
+		background-color: rgb(155, 14, 68);
+		transition: all .3s;
+		z-index: -1;
+	}
+	&:hover {
+		a {
+			color: white;
+		}
+		&:before {
+			width: 100%;
+		}
+	}
+	a {
+		font-size: 18px;
+		text-decoration: none;
+		color: black;
 	}
 }

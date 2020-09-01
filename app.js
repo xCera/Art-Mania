@@ -43,7 +43,7 @@ app.post('/artworks', (req, res) => {
 });
 
 app.get('/artworks/new', (req, res) => {
-	res.render('newArt');
+	res.render('newArtwork');
 });
 
 app.listen(port, () => console.log(`listening!`));

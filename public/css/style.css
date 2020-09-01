@@ -80,4 +80,102 @@ body {
   right: 0;
   margin: 10px;
 }
+
+.artworks-container .card .more i {
+  color: #9b0e44;
+}
+
+.form-container {
+  margin: 150px auto;
+  width: 40%;
+}
+
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form .slide {
+  margin-top: 20px;
+}
+
+form div {
+  margin: 20px 0;
+  width: 90%;
+}
+
+form div label {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: black;
+  display: block;
+}
+
+form div input {
+  padding: 20px;
+  height: 52px;
+  background: none;
+  color: black;
+  border: none;
+  font-size: 18px;
+  border: 1px solid #b6b6b6;
+  border-radius: 5px;
+  width: 100%;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.slide {
+  margin-top: 10px;
+  border: 2px solid #9b0e44;
+  border-radius: 30px;
+  padding: 5px 15px;
+  background-color: rgba(0, 0, 0, 0);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.slide:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.slide:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #9b0e44;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  z-index: -1;
+}
+
+.slide:hover a {
+  color: white;
+}
+
+.slide:hover:before {
+  width: 100%;
+}
+
+.slide a {
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+}
 /*# sourceMappingURL=style.css.map */
