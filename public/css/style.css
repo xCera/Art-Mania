@@ -74,6 +74,10 @@ body {
   padding: 15px;
 }
 
+.artworks-container .card .card-body h3 {
+  margin-bottom: 8px;
+}
+
 .artworks-container .card .more {
   position: absolute;
   bottom: 0;

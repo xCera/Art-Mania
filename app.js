@@ -1,44 +1,48 @@
-const express = require('express');
-const app = express();
-const port = 3000;
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
+const express = require('express'),
+	app = express(),
+	port = 3000,
+	bodyParser = require('body-parser'),
+	mongoose = require('mongoose'),
+	Artwork = require('./models/artwork');
 
-const artworks = [
-	{
-		title: 'Dark City',
-		thumbnail:
-			'https://images.unsplash.com/photo-1525838808082-a422ecbce2ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80',
-		desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-		author: {
-			name: 'Marko Jovanovic',
-			image:
-				'https://images.unsplash.com/photo-1561903912-87c9615f2b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
-		}
-	}
-];
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'ejs');
+
+//======================== DATABASE SETUP =========================================
+mongoose
+	.connect('mongodb://localhost:27017/art_mania', {
+		useNewUrlParser: true,
+		useUnifiedTopology: true
+	})
+	.then(() => console.log('Connected to DB!'))
+	.catch((error) => console.log(error.message));
+
+//================================== ROUTES =========================================
 
 app.get('/', (req, res) => {
 	res.render('landing');
 });
 
 app.get('/artworks', (req, res) => {
-	res.render('artworks', { artworks: artworks });
+	Artwork.find({})
+		.then((allArtworks) => {
+			res.render('artworks', { artworks: allArtworks });
+		})
+		.catch((err) => console.log(err));
 });
 
 app.post('/artworks', (req, res) => {
-	let newArtwork = {
+	Artwork.create({
 		title: req.body.title,
 		thumbnail: req.body.thumbnail,
-		desc: req.body.desc,
-		author: {
-			name: req.body.name,
-			image: req.body.image
-		}
-	};
-	artworks.push(newArtwork);
+		desc: req.body.desc
+	})
+		.then((newArtwork) => {
+			console.log('New artwork succesfuly created');
+			console.log(newArtwork);
+		})
+		.catch((err) => console.log(err));
 	res.redirect('/artworks');
 });
 
