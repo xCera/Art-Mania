@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art Maniac</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-</head>
-<body>
+<%- include("partials/header") %>
+
         <div class="artworks-container">
             <% artworks.forEach(art => { %>
                 <div class="card">
@@ -23,8 +16,6 @@
                 </div>
             <% }); %>
         </div>
-</body>
-</html>
 
-
+<%- include("partials/footer") %>
 
