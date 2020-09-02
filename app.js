@@ -1,3 +1,5 @@
+const artwork = require('./models/artwork');
+
 const express = require('express'),
 	app = express(),
 	port = 3000,
@@ -24,6 +26,8 @@ app.get('/', (req, res) => {
 	res.render('landing');
 });
 
+//	INDEX ROUTE - Show all artworks on page
+
 app.get('/artworks', (req, res) => {
 	Artwork.find({})
 		.then((allArtworks) => {
@@ -31,6 +35,8 @@ app.get('/artworks', (req, res) => {
 		})
 		.catch((err) => console.log(err));
 });
+
+//	CREATE ROUTE - Get data from form then create new Artwork
 
 app.post('/artworks', (req, res) => {
 	Artwork.create({
@@ -46,8 +52,22 @@ app.post('/artworks', (req, res) => {
 	res.redirect('/artworks');
 });
 
+// NEW ROUTE - Show form to create new Artwork
+
 app.get('/artworks/new', (req, res) => {
 	res.render('newArtwork');
+});
+
+// SHOW ROUTE - Show info about one specific artwork
+
+app.get('/artworks/:id', (req, res) => {
+	let id = req.params.id;
+	Artwork.findById(id)
+		.then((artwork) => {
+			console.log(artwork);
+			res.render('showArtwork', { artwork: artwork });
+		})
+		.catch((err) => console.log(err));
 });
 
 app.listen(port, () => console.log(`listening!`));
