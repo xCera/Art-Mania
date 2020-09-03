@@ -5,12 +5,14 @@ const express = require('express'),
 	port = 3000,
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
+	methodOverride = require('method-override'),
 	Artwork = require('./models/artwork');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
-
+app.use(methodOverride('_method'));
+mongoose.set('useFindAndModify', false);
 //======================== DATABASE SETUP =========================================
 mongoose
 	.connect('mongodb://localhost:27017/art_mania', {
@@ -21,10 +23,6 @@ mongoose
 	.catch((error) => console.log(error.message));
 
 //================================== ROUTES =========================================
-
-app.get('/', (req, res) => {
-	res.render('landing');
-});
 
 //	INDEX ROUTE - Show all artworks on page
 
@@ -64,8 +62,28 @@ app.get('/artworks/:id', (req, res) => {
 	let id = req.params.id;
 	Artwork.findById(id)
 		.then((artwork) => {
-			console.log(artwork);
 			res.render('showArtwork', { artwork: artwork });
+		})
+		.catch((err) => console.log(err));
+});
+
+// EDIT ROUTE - Show form to edit artwork
+app.get('/artworks/:id/edit', (req, res) => {
+	let id = req.params.id;
+	Artwork.findById(id)
+		.then((artwork) => {
+			res.render('editArtwork', { artwork: artwork });
+		})
+		.catch((err) => console.log(err));
+});
+
+// UPDATE ROUTE - Get infro from form and update artowrk
+
+app.put('/artworks/:id', (req, res) => {
+	let id = req.params.id;
+	Artwork.findByIdAndUpdate(id, req.body, { new: true })
+		.then((updatedArtowrk) => {
+			res.redirect(`/artworks/${id}`);
 		})
 		.catch((err) => console.log(err));
 });

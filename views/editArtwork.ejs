@@ -1,0 +1,30 @@
+<%- include("partials/header") %>
+
+<div class="form-container">
+    <form action="/artworks/<%=artwork._id%>?_method=PUT" method="POST">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value="<%=artwork.title%>">
+        </div>
+        <div>
+            <label for="thumbnail">Thumbnail</label>
+            <input type="url" name="thumbnail" id="thumbnail" value="<%=artwork.thumbnail%>">
+        </div>
+        <div>
+            <label for="desc">Description</label>
+            <input type="text" name="desc" id="desc" value="<%=artwork.desc%>">
+        </div>
+        <!-- <div>  
+            <label for="name">Your Name</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label for="Image">Your Image</label>
+            <input type="text" name="image" id="image">
+        </div> -->
+        <button class="slide"><a>Update</a></button>
+    </form>
+</div>
+
+<%- include("partials/footer") %>
+

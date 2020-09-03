@@ -1,8 +1,13 @@
 <%- include("partials/header") %>
 
 <h1>Show</h1>
-    
+  
+<div class="artwork-image" style="background-image: url('<%=artwork.thumbnail%>');"></div>
 <h3><%=artwork.title%></h3>
+<p><%=artwork.desc%></p>
+
+<button type="submit"><a href="/artworks/<%=artwork._id%>/edit">Edit</a></button>
+
 
 <%- include("partials/footer") %>
 
