@@ -5,6 +5,8 @@ const express = require('express'),
 
 //	INDEX ROUTE - Show all artworks on page
 
+router.get('/', (req, res) => res.redirect('/artworks'));
+
 router.get('/artworks', (req, res) => {
 	Artwork.find({})
 		.then((allArtworks) => {
