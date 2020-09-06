@@ -10,7 +10,7 @@ router.get('/', (req, res) => res.redirect('/artworks'));
 router.get('/artworks', (req, res) => {
 	Artwork.find({})
 		.then((allArtworks) => {
-			res.render('artworks/artworks', { artworks: allArtworks });
+			res.render('artworks/artworks', { artworks: allArtworks, user: req.user });
 		})
 		.catch((err) => console.log(err));
 });
@@ -34,7 +34,7 @@ router.post('/artworks', (req, res) => {
 // NEW ROUTE - Show form to create new Artwork
 
 router.get('/artworks/new', (req, res) => {
-	res.render('artworks/newArtwork');
+	res.render('artworks/newArtwork', { user: req.user });
 });
 
 // SHOW ROUTE - Show info about one specific artwork
@@ -43,7 +43,7 @@ router.get('/artworks/:id', (req, res) => {
 	let id = req.params.id;
 	Artwork.findById(id)
 		.then((artwork) => {
-			res.render('artworks/showArtwork', { artwork: artwork });
+			res.render('artworks/showArtwork', { artwork: artwork, user: req.user });
 		})
 		.catch((err) => console.log(err));
 });
@@ -53,7 +53,7 @@ router.get('/artworks/:id/edit', (req, res) => {
 	let id = req.params.id;
 	Artwork.findById(id)
 		.then((artwork) => {
-			res.render('artworks/editArtwork', { artwork: artwork });
+			res.render('artworks/editArtwork', { artwork: artwork, user: req.user });
 		})
 		.catch((err) => console.log(err));
 });

@@ -13,15 +13,25 @@
         <div class="nav-container">
             <h1>Art Mania</h1>
             <ul class="nav-links">
-                <li><a href="/artworks">Home</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Sign Up</a></li>
+                <% if(!user){ %>
+                    <li><a href="/artworks">Home</a></li>
+                    <li><a href="/user/login">Login</a></li>
+                    <li><a href="/user/register">Sign Up</a></li>
+                <% } else { %>
+                    <li><a href="/artworks">Home</a></li>
+                    <li><a href="/user/dashboard">Dashboard</a></li>
+                    <li><a href="/user/logout">Log out</a></li>
+                    <% } %>
             </ul>
         </div>
     </nav>
 
     <div class="home-image">
+        <% if(!user){ %>
             <h1>Artworks</h1>
+        <% } else { %>
+            <h1>Hello <%=user.firstName%>!</h1>
+            <% } %>
             <p>Post your own work and get feedback!</p>
             <button><a href="/artworks/new">Submit</a></button>
     </div>
