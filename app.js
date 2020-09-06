@@ -11,7 +11,8 @@ require('dotenv').config();
 // REQUIRING ROUTES
 
 const artworksRoutes = require('./routes/artworks'),
-	indexRoutes = require('./routes/index');
+	indexRoutes = require('./routes/index'),
+	commentsRoutes = require('./routes/comments');
 
 // ===================== APPLICATIONS SETUP ============================
 
@@ -69,5 +70,10 @@ mongoose
 
 app.use(artworksRoutes);
 app.use(indexRoutes);
+app.use(commentsRoutes);
+
+app.get('*', (req, res) => {
+	res.redirect('/artworks');
+});
 
 app.listen(process.env.port, () => console.log(`listening!`));

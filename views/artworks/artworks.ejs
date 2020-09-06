@@ -6,12 +6,12 @@
                 <div class="card">
                     <div class="card-img" style="background-image: url('<%=art.thumbnail%>');"></div>
                     <div class="card-author">
-                        <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1561903912-87c9615f2b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                        <h4>Marko Jovanovic</h4>
+                        <div class="author-img" style="background-image: url('<%=art.author.avatar%>');"></div>
+                        <h4><%=art.author.firstName + ' ' + art.author.lastName%></h4>
                     </div>
                     <div class="card-body">
                        <h3><%=art.title%></h3>
-                        <p><%=art.desc%></p>
+                        <p><%=art.desc.substring(0, 60)%>...</p>
                     </div>
                     <div class="more">
                         <a href="artworks/<%=art._id%>"><i class="fas fa-angle-double-right"></i></a>

@@ -1,7 +1,9 @@
 // ================== ARTWORKS ROUTE ======================
 const express = require('express'),
 	router = express.Router(),
-	Artwork = require('../models/artwork');
+	middlewareObject = require('../middleware/index.js'),
+	Artwork = require('../models/artwork'),
+	User = require('../models/user');
 
 //	INDEX ROUTE - Show all artworks on page
 
@@ -21,19 +23,26 @@ router.post('/artworks', (req, res) => {
 	Artwork.create({
 		title: req.body.title,
 		thumbnail: req.body.thumbnail,
-		desc: req.body.desc
+		desc: req.body.desc,
+		author: req.user
 	})
 		.then((newArtwork) => {
 			console.log('New artwork succesfuly created');
 			console.log(newArtwork);
+			User.findById(req.user._id)
+				.then((user) => {
+					user.artworks = newArtwork;
+					console.log(user.artworks);
+					return res.redirect('/artworks');
+				})
+				.catch((err) => console.log(err));
 		})
 		.catch((err) => console.log(err));
-	res.redirect('/artworks');
 });
 
 // NEW ROUTE - Show form to create new Artwork
 
-router.get('/artworks/new', (req, res) => {
+router.get('/artworks/new', middlewareObject.loginRequired, (req, res) => {
 	res.render('artworks/newArtwork', { user: req.user });
 });
 
@@ -43,7 +52,15 @@ router.get('/artworks/:id', (req, res) => {
 	let id = req.params.id;
 	Artwork.findById(id)
 		.then((artwork) => {
-			res.render('artworks/showArtwork', { artwork: artwork, user: req.user });
+			let checkOwnership = false;
+			if (req.user) {
+				if (artwork.author._id.equals(req.user._id)) {
+					checkOwnership = true;
+				} else {
+					checkOwnership = false;
+				}
+			}
+			return res.render('artworks/showArtwork', { artwork: artwork, user: req.user, isOwner: checkOwnership });
 		})
 		.catch((err) => console.log(err));
 });
@@ -53,7 +70,11 @@ router.get('/artworks/:id/edit', (req, res) => {
 	let id = req.params.id;
 	Artwork.findById(id)
 		.then((artwork) => {
-			res.render('artworks/editArtwork', { artwork: artwork, user: req.user });
+			if (artwork.author._id.equals(req.user._id)) {
+				res.render('artworks/editArtwork', { artwork: artwork, user: req.user });
+			} else {
+				res.redirect('/artworks');
+			}
 		})
 		.catch((err) => console.log(err));
 });
@@ -65,6 +86,18 @@ router.put('/artworks/:id', (req, res) => {
 	Artwork.findByIdAndUpdate(id, req.body, { new: true })
 		.then((updatedArtowrk) => {
 			res.redirect(`/artworks/${id}`);
+		})
+		.catch((err) => console.log(err));
+});
+
+//// DELETE ROUTE - Delete artwork
+
+router.delete('/artworks/:id', (req, res) => {
+	let id = req.params.id;
+	Artwork.findByIdAndDelete(id)
+		.then(() => {
+			console.log('Artwork successfully deleted!');
+			return res.redirect('/artworks');
 		})
 		.catch((err) => console.log(err));
 });

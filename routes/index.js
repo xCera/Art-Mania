@@ -2,18 +2,11 @@
 const express = require('express'),
 	router = express.Router(),
 	bcrypt = require('bcryptjs'),
+	middlewareObject = require('../middleware/index.js'),
+	Artwork = require('../models/artwork'),
 	User = require('../models/user');
 
 require('dotenv').config();
-
-// ====================== MIDDLEWARE LOGIN ================================
-const loginRequired = function(req, res, next) {
-	if (!req.user) {
-		return res.redirect('/user/login');
-	}
-
-	next();
-};
 
 // ====================== REGISTER ========================
 router.get('/user/register', (req, res) => {
@@ -58,7 +51,7 @@ router.post('/user/login', (req, res) => {
 	});
 });
 
-router.get('/user/dashboard', loginRequired, (req, res, next) => {
+router.get('/user/dashboard', middlewareObject.loginRequired, (req, res, next) => {
 	User.findById(req.session.userId, (err, user) => {
 		if (err) {
 			return next(err);
@@ -67,14 +60,15 @@ router.get('/user/dashboard', loginRequired, (req, res, next) => {
 		if (!user) {
 			return res.redirect('/user/login');
 		}
-
-		res.render('user/dashboard', { user: req.user });
+		Artwork.find().where('author._id').equals(user._id).then((artworks) => {
+			return res.render('user/dashboard', { user: user, artworks: artworks });
+		});
 	});
 });
 
 //===================== LOGOUT ===========================
 
-router.get('/user/logout', loginRequired, (req, res) => {
+router.get('/user/logout', middlewareObject.loginRequired, (req, res) => {
 	req.session.userId = null;
 	res.redirect('/artworks');
 });

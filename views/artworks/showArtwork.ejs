@@ -1,12 +1,30 @@
 <%- include("../partials/header") %>
 
-<h1>Show</h1>
-  
-<div class="artwork-image" style="background-image: url('<%=artwork.thumbnail%>');"></div>
-<h3><%=artwork.title%></h3>
-<p><%=artwork.desc%></p>
 
-<button type="submit"><a href="/artworks/<%=artwork._id%>/edit">Edit</a></button>
+<div class="show-artwork">
+    <div class="artwork-image" style="background-image: url('<%=artwork.thumbnail%>');"></div>
+    <div class="show-body">
+        <div class="show-author">
+            <img src="<%=artwork.author.avatar%>" alt="">
+            <h3><%=artwork.author.firstName + ' ' + artwork.author.lastName%></h3>
+        </div>
+        <div class="show-text">
+            <h1><%=artwork.title%></h1>
+            <p><%=artwork.desc%></p>
+            <% if(isOwner === true){ %>
+                <form action="/artworks/<%=artwork._id%>?_method=DELETE" method="POST">
+                    <button type="submit"><i class="far fa-trash-alt"></i></button>
+               </form>
+               <button type="submit" style="right: 40px;"><a href="/artworks/<%=artwork._id%>/edit"><i class="fas fa-edit"></i></a></button>
+            <% } %>
+        </div>
+
+    </div>
+
+</div>
+
+
+
 
 
 <%- include("../partials/footer") %>
