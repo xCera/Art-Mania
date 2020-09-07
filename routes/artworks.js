@@ -24,18 +24,18 @@ router.post('/artworks', (req, res) => {
 		title: req.body.title,
 		thumbnail: req.body.thumbnail,
 		desc: req.body.desc,
-		author: req.user
+		author: {
+			_id: req.user._id,
+			userName: req.user.userName,
+			firstName: req.user.firstName,
+			lastName: req.user.lastName,
+			avatar: req.user.avatar
+		}
 	})
 		.then((newArtwork) => {
 			console.log('New artwork succesfuly created');
 			console.log(newArtwork);
-			User.findById(req.user._id)
-				.then((user) => {
-					user.artworks = newArtwork;
-					console.log(user.artworks);
-					return res.redirect('/artworks');
-				})
-				.catch((err) => console.log(err));
+			res.redirect('/artworks');
 		})
 		.catch((err) => console.log(err));
 });
@@ -51,6 +51,7 @@ router.get('/artworks/new', middlewareObject.loginRequired, (req, res) => {
 router.get('/artworks/:id', (req, res) => {
 	let id = req.params.id;
 	Artwork.findById(id)
+		.populate('comments')
 		.then((artwork) => {
 			let checkOwnership = false;
 			if (req.user) {

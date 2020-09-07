@@ -71,7 +71,7 @@ mongoose
 app.use(artworksRoutes);
 app.use(indexRoutes);
 app.use(commentsRoutes);
-
+app.locals.moment = require('moment');
 app.get('*', (req, res) => {
 	res.redirect('/artworks');
 });

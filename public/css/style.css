@@ -309,11 +309,157 @@ nav {
   width: 100%;
 }
 
+.show-artwork a .fa-edit {
+  font-size: 24px;
+  color: #37d821;
+}
+
+.show-artwork .comments-container {
+  width: 95%;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.show-artwork .com-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 15px;
+}
+
+.show-artwork .com-text h2 {
+  font-weight: 300;
+}
+
+.show-artwork .comment {
+  position: relative;
+  margin: 20px 0px;
+  padding: 25px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.show-artwork .comment img {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+}
+
+.show-artwork .comment .comment-body {
+  margin-left: 20px;
+}
+
+.show-artwork .comment .comment-author {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.show-artwork .comment .comment-author p {
+  margin-left: 10px;
+  font-weight: 100;
+}
+
+.show-artwork .comment .formButtons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 10px;
+}
+
+.show-artwork .comment .formButtons .fa-trash-alt {
+  font-size: 18px;
+  color: #d32b2b;
+}
+
+.show-artwork .simpleBtn {
+  margin-top: 15px;
+  padding: 8px 15px;
+  background-color: #9b0e44;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.show-artwork .simpleBtn:hover {
+  background-color: #741010;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.show-artwork .comment-form,
+.show-artwork .edit-comment-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  border-left: 5px solid #9b0e44;
+}
+
+.show-artwork .comment-form textarea,
+.show-artwork .edit-comment-form textarea {
+  margin-top: 15px;
+  display: block;
+  width: 100%;
+  height: calc(10rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  -webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+}
+
+.show-artwork .edit-comment-form {
+  margin-left: 20px;
+  border-left: 5px solid #37d821;
+}
+
+.show-artwork .edit-comment-form .simpleBtn {
+  background-color: #37d821;
+}
+
 .show-artwork .show-body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+  -webkit-box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.05);
 }
 
 .show-artwork .show-body .show-author {
@@ -330,8 +476,6 @@ nav {
           justify-content: center;
   padding: 20px 40px;
   text-align: center;
-  -webkit-box-shadow: 10px 0px 15px 0px rgba(0, 0, 0, 0.05);
-          box-shadow: 10px 0px 15px 0px rgba(0, 0, 0, 0.05);
 }
 
 .show-artwork .show-body .show-author h3 {
@@ -359,15 +503,6 @@ nav {
   padding: 10px;
 }
 
-.show-artwork .show-body .show-text button a {
-  text-decoration: none;
-}
-
-.show-artwork .show-body .show-text button a .fa-edit {
-  font-size: 24px;
-  color: #37d821;
-}
-
 .show-artwork .show-body .show-text button .fa-trash-alt {
   font-size: 24px;
   color: #d32b2b;
@@ -377,6 +512,11 @@ nav {
   border-radius: 50%;
   height: 150px;
   width: 150px;
+}
+
+.show-artwork .fa-edit {
+  font-size: 18px;
+  color: #37d821;
 }
 
 .dashboard {

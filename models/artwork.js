@@ -8,7 +8,13 @@ const artworkSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now()
 	},
-	author: {}
+	author: {},
+	comments: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Comment'
+		}
+	]
 });
 
 module.exports = mongoose.model('Artwork', artworkSchema);
