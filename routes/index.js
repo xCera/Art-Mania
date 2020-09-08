@@ -12,43 +12,42 @@ require('dotenv').config();
 
 // ====================== REGISTER ========================
 router.get('/user/register', (req, res) => {
-	res.render('user/register', { user: req.user });
+	res.render('user/register', { user: req.user, error: req.flash('error') });
 });
 
 router.post('/user/register', (req, res) => {
 	let hash = bcrypt.hashSync(req.body.password, Number(process.env.numFactor));
 	req.body.password = hash;
 	let newUser = new User(req.body);
-	newUser
-		.save()
-		.then((user) => {
-			console.log(user);
-			return res.redirect('/user/dashboard');
-		})
-		.catch((err) => {
+	newUser.save((err) => {
+		if (err) {
 			let error = 'Something bad happend! Please try again.';
 			if (err.code === 11000) {
-				error = 'That email is already taken, please try another.';
+				error = 'That email or username is already taken, please try another.';
 				console.log(error);
 			}
-
-			return res.render('user/register', { error: error });
-		});
+			req.flash('error', `${error}`);
+			return res.redirect('/user/register');
+		} else {
+			req.flash('success', 'Successfully created account, please log in now!');
+			return res.redirect('/user/login');
+		}
+	});
 });
 
 //===================== LOGIN ===========================
 
 router.get('/user/login', (req, res) => {
-	res.render('user/login', { user: req.user });
+	res.render('user/login', { user: req.user, error: req.flash('error'), success: req.flash('success') });
 });
 
 router.post('/user/login', (req, res) => {
 	User.findOne({ email: req.body.email }, (err, user) => {
-		if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
-			return res.render('user/login', { error: 'Incorrect password or email' });
+		if (err || !user || !bcrypt.compareSync(req.body.password, user.password)) {
+			return res.render('user/login', { user: req.user, error: 'Incorrect password or email' });
 		}
-
 		req.session.userId = user._id;
+		req.flash('success', 'Successfully logged in! Welcome!');
 		res.redirect('/user/dashboard');
 	});
 });
@@ -64,7 +63,11 @@ router.get('/user/dashboard', middlewareObject.loginRequired, (req, res, next) =
 			return res.redirect('/user/login');
 		}
 		Artwork.find().where('author._id').equals(user._id).then((artworks) => {
-			return res.render('user/dashboard', { user: user, artworks: artworks });
+			return res.render('user/dashboard', {
+				user: req.user,
+				artworks: artworks,
+				success: req.flash('success')
+			});
 		});
 	});
 });

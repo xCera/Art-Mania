@@ -12,7 +12,7 @@ router.get('/', (req, res) => res.redirect('/artworks'));
 router.get('/artworks', (req, res) => {
 	Artwork.find({})
 		.then((allArtworks) => {
-			res.render('artworks/artworks', { artworks: allArtworks, user: req.user });
+			res.render('artworks/artworks', { artworks: allArtworks, user: req.user, success: req.flash('success') });
 		})
 		.catch((err) => console.log(err));
 });
@@ -61,7 +61,11 @@ router.get('/artworks/:id', (req, res) => {
 					checkOwnership = false;
 				}
 			}
-			return res.render('artworks/showArtwork', { artwork: artwork, user: req.user, isOwner: checkOwnership });
+			return res.render('artworks/showArtwork', {
+				artwork: artwork,
+				user: req.user,
+				isOwner: checkOwnership
+			});
 		})
 		.catch((err) => console.log(err));
 });

@@ -1,5 +1,11 @@
 <%- include("../partials/header") %>
 
+<% if(success && success.length > 0){ %>
+    <div class="success">
+        <i class="far fa-check-circle"></i>
+        <%=success%>
+    </div>
+<% } %>
     <div class="search-form">
         <form action="/artworks?_method=SEARCH" method="post">
             <input type="text" name="search" placeholder="Search artworks..." aria-label="Search" required>

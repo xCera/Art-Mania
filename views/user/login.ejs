@@ -3,6 +3,15 @@
 
 
 <div class="form-container">
+    <% if(error && error.length > 0){ %>
+        <div class="error">
+            <i class="far fa-times-circle"></i>
+            <strong>Error!</strong>
+            <%=error%>
+        </div>
+    <% } %>
+
+
     <form action="/user/login" method="post">
         <div>
             <label for="email">Email</label>

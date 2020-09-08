@@ -697,6 +697,54 @@ nav {
   font-size: 14px;
 }
 
+.error {
+  width: 90%;
+  border: 1px solid rgba(241, 6, 6, 0.81);
+  background-color: rgba(220, 17, 1, 0.16);
+  -webkit-box-shadow: 0px 0px 2px #ff0303;
+          box-shadow: 0px 0px 2px #ff0303;
+  color: #ff0303;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+  position: relative;
+  padding: .75rem 1.25rem;
+  padding-right: 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.error i {
+  color: #ff0303;
+  cursor: pointer;
+}
+
+.success {
+  margin: auto;
+  margin-top: auto;
+  width: 50%;
+  margin-top: 50px;
+  width: 90%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+  position: relative;
+  padding: .75rem 1.25rem;
+  padding-right: 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  background-color: rgba(7, 149, 66, 0.35);
+  border: 1px solid rgba(36, 241, 6, 0.46);
+  color: #0ad406;
+}
+
+.success i {
+  cursor: pointer;
+  color: #0ad406;
+}
+
 @media all and (max-width: 1750px) {
   .dashboard .user-card img {
     width: 100px;

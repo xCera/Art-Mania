@@ -1,5 +1,11 @@
 <%- include("../partials/header") %>
 
+<% if(success && success.length > 0){ %>
+    <div class="success">
+        <i class="far fa-check-circle"></i>
+        <%=success%>
+    </div>
+<% } %>
 <div class="dashboard">
     <div class="user-card">
         <img src="<%=user.avatar%>" alt="">
