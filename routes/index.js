@@ -1,3 +1,5 @@
+const { route } = require('./comments.js');
+
 // =========== AUTH ROUTE =================
 const express = require('express'),
 	router = express.Router(),
@@ -51,6 +53,7 @@ router.post('/user/login', (req, res) => {
 	});
 });
 
+// DASHBOARD
 router.get('/user/dashboard', middlewareObject.loginRequired, (req, res, next) => {
 	User.findById(req.session.userId, (err, user) => {
 		if (err) {
@@ -62,6 +65,21 @@ router.get('/user/dashboard', middlewareObject.loginRequired, (req, res, next) =
 		}
 		Artwork.find().where('author._id').equals(user._id).then((artworks) => {
 			return res.render('user/dashboard', { user: user, artworks: artworks });
+		});
+	});
+});
+
+// PROFILE
+
+router.get('/user/profile/:id', (req, res) => {
+	let id = req.params.id;
+	User.findById(id, (err, user) => {
+		if (err) {
+			return next(err);
+		}
+
+		Artwork.find().where('author._id').equals(user._id).then((artworks) => {
+			return res.render('user/userProfile', { user: user, artworks: artworks });
 		});
 	});
 });

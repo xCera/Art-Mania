@@ -170,6 +170,8 @@ nav {
 	position: fixed;
 	top: 0;
 	width: 100%;
+	transition: 300ms;
+	z-index: 9999;
 }
 
 .nav-container {
@@ -278,7 +280,7 @@ nav {
 		display: flex;
 		justify-content: space-between;
 		padding: 15px;
-
+		align-items: center;
 		h2 {
 			font-weight: 300;
 		}
@@ -326,8 +328,7 @@ nav {
 	}
 
 	.simpleBtn {
-		margin-top: 15px;
-		padding: 8px 15px;
+		padding: 10px 12px;
 		background-color: $primary;
 		border: none;
 		border-radius: 20px;
@@ -335,7 +336,7 @@ nav {
 		font-size: 14px;
 		transition: 200ms;
 		&:hover {
-			background-color: rgb(116, 16, 16);
+			background-color: rgb(206, 21, 122);
 			transform: scale(1.1);
 		}
 	}
@@ -389,7 +390,11 @@ nav {
 			text-align: center;
 			h3 {
 				margin-top: 10px;
-				font-weight: 300;
+				a {
+					text-decoration: none;
+					font-weight: 400;
+					color: black;
+				}
 			}
 		}
 
@@ -522,6 +527,50 @@ nav {
 	width: 100vw !important;
 	display: flex !important;
 }
+
+.scrolled {
+	background-color: rgba(155, 14, 68, 0.9);
+}
+
+.search-form {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+
+	form {
+		border: 1px solid #eee;
+		background: #f9f9ff;
+		border-radius: 50px;
+
+		input {
+			padding: 13px 20px;
+			font-size: 14px;
+			border: none;
+			float: left;
+			width: 80%;
+			background: transparent;
+		}
+
+		button {
+			float: left;
+			width: 20%;
+			padding: 5px 4px 3px 15px;
+			background: transparent;
+			color: white;
+			font-size: 17px;
+			border: none;
+			cursor: pointer;
+
+			i {
+				padding: 12px;
+				background: $primary;
+				border-radius: 29px;
+				color: #fff;
+				font-size: 14px;
+			}
+		}
+	}
+}
 @media all and(min-width:2900px) {
 }
 
@@ -594,7 +643,6 @@ nav {
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			transition: 400ms;
 			li {
 				margin: 30px 0px;
 			}
@@ -631,6 +679,23 @@ nav {
 		}
 		.card {
 			width: 90%;
+		}
+	}
+
+	.show-artwork {
+		width: 95%;
+
+		.artwork-image {
+			height: 200px;
+		}
+
+		.show-body {
+			padding: 10px;
+			img {
+				margin-right: 10px;
+				height: 80px;
+				width: 80px;
+			}
 		}
 	}
 }

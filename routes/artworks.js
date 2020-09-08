@@ -103,4 +103,18 @@ router.delete('/artworks/:id', (req, res) => {
 		.catch((err) => console.log(err));
 });
 
+//SEARCH
+function escapeRegex(text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
+
+router.search('/artworks', (req, res) => {
+	const regex = new RegExp(escapeRegex(req.body.search), 'gi');
+	Artwork.find({ title: regex })
+		.then((foundArtworks) => {
+			res.render('artworks/artworks', { artworks: foundArtworks, user: req.user });
+		})
+		.catch((err) => console.log(err));
+});
+
 module.exports = router;

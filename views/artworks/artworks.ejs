@@ -1,5 +1,11 @@
 <%- include("../partials/header") %>
 
+    <div class="search-form">
+        <form action="/artworks?_method=SEARCH" method="post">
+            <input type="text" name="search" placeholder="Search artworks..." aria-label="Search" required>
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
         <div class="artworks-container">
             <% if(artworks){
                 artworks.forEach(art => { %>

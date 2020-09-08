@@ -16,3 +16,12 @@ $('.show-comment-form').on('click', () => {
 	let id = $('#pomocna').text();
 	$(`#${id}`).slideToggle();
 });
+
+$(window).scroll(() => {
+	let scroll = $(window).scrollTop();
+	if (scroll > 50) {
+		$('nav').addClass('scrolled');
+	} else {
+		$('nav').removeClass('scrolled');
+	}
+});

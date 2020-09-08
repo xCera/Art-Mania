@@ -189,6 +189,9 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  z-index: 9999;
 }
 
 .nav-container {
@@ -328,6 +331,9 @@ nav {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .show-artwork .com-text h2 {
@@ -387,8 +393,7 @@ nav {
 }
 
 .show-artwork .simpleBtn {
-  margin-top: 15px;
-  padding: 8px 15px;
+  padding: 10px 12px;
   background-color: #9b0e44;
   border: none;
   border-radius: 20px;
@@ -399,7 +404,7 @@ nav {
 }
 
 .show-artwork .simpleBtn:hover {
-  background-color: #741010;
+  background-color: #ce157a;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -480,7 +485,12 @@ nav {
 
 .show-artwork .show-body .show-author h3 {
   margin-top: 10px;
-  font-weight: 300;
+}
+
+.show-artwork .show-body .show-author h3 a {
+  text-decoration: none;
+  font-weight: 400;
+  color: black;
 }
 
 .show-artwork .show-body .show-text {
@@ -639,6 +649,54 @@ nav {
   display: flex !important;
 }
 
+.scrolled {
+  background-color: rgba(155, 14, 68, 0.9);
+}
+
+.search-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 50px;
+}
+
+.search-form form {
+  border: 1px solid #eee;
+  background: #f9f9ff;
+  border-radius: 50px;
+}
+
+.search-form form input {
+  padding: 13px 20px;
+  font-size: 14px;
+  border: none;
+  float: left;
+  width: 80%;
+  background: transparent;
+}
+
+.search-form form button {
+  float: left;
+  width: 20%;
+  padding: 5px 4px 3px 15px;
+  background: transparent;
+  color: white;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-form form button i {
+  padding: 12px;
+  background: #9b0e44;
+  border-radius: 29px;
+  color: #fff;
+  font-size: 14px;
+}
+
 @media all and (max-width: 1750px) {
   .dashboard .user-card img {
     width: 100px;
@@ -713,8 +771,6 @@ nav {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    -webkit-transition: 400ms;
-    transition: 400ms;
   }
   .nav-container .nav-links li {
     margin: 30px 0px;
@@ -758,6 +814,20 @@ nav {
   }
   .dashboard .card {
     width: 90%;
+  }
+  .show-artwork {
+    width: 95%;
+  }
+  .show-artwork .artwork-image {
+    height: 200px;
+  }
+  .show-artwork .show-body {
+    padding: 10px;
+  }
+  .show-artwork .show-body img {
+    margin-right: 10px;
+    height: 80px;
+    width: 80px;
   }
 }
 /*# sourceMappingURL=style.css.map */

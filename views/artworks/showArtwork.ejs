@@ -6,11 +6,12 @@
     <div class="show-body">
         <div class="show-author">
             <img src="<%=artwork.author.avatar%>" alt="">
-            <h3><%=artwork.author.firstName + ' ' + artwork.author.lastName%></h3>
+            <h3><a href="/user/profile/<%=artwork.author._id%>"><%=artwork.author.firstName + ' ' + artwork.author.lastName%> </a></h3>
         </div>
         <div class="show-text">
-            <h1><%=artwork.title%></h1>
-            <p><%=artwork.desc%></p>
+            <h1 style="display: inline; margin-right: 10px; "><%=artwork.title%></h1>
+            <p style="display: inline; font-style: italic; "><%=moment(artwork.createdAt).fromNow()%></p>
+            <p style="margin-top: 10px;"><%=artwork.desc%></p>
             <% if(isOwner === true){ %>
                 <form action="/artworks/<%=artwork._id%>?_method=DELETE" method="POST">
                     <button type="submit"><i class="far fa-trash-alt"></i></button>
@@ -23,13 +24,13 @@
     <div class="comments-container">
         <div class="com-text">
             <h2>Comments:</h2>
-            <button class="show-form simpleBtn">Add a new comment</button>
+            <button class="show-form simpleBtn"><i class="fas fa-plus"></i></button>
         </div>
        <div class="comments">
         <form action="/artworks/<%=artwork._id%>/comment" class="comment-form" method="post">
             <label for="text">Write your comment</label>
             <textarea name="text" id="text" cols="30" rows="10" placeholder="Write your comment..."></textarea>
-            <button type="submit" class="simpleBtn">Comment</button>
+            <button type="submit" class="simpleBtn" style="margin-top: 15px;">Comment</button>
         </form>
         <% if(artwork.comments){
             artwork.comments.forEach(comment => { %>
@@ -52,7 +53,7 @@
                             <p id="pomocna" style="display: none"><%=comment.author._id%></p>
                             <label for="text">Edit your comment</label>
                             <textarea name="text" id="text" cols="30" rows="10" ><%=comment.text%></textarea>
-                            <button type="submit" class="simpleBtn">Update</button>
+                            <button type="submit" class="simpleBtn" style="margin-top: 15px;">Update</button>
                         </form>
                     <% } } %>
              
