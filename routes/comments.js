@@ -1,6 +1,5 @@
 const { find, findById } = require('../models/artwork');
 
-// ================== ARTWORKS ROUTE ======================
 const express = require('express'),
 	router = express.Router(),
 	middlewareObject = require('../middleware/index.js'),
